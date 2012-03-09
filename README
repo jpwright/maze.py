@@ -1,0 +1,43 @@
+README
+======
+
+1. About
+--------
+
+This is a suite of Python functions that can be used to generate mazes and produce maze images. There's also some functionality included to control a Parallax Scribbler robot over Bluetooth, part of a project I worked on.
+
+More information about the project is available at http://www.jpwright.net/posts/maze-robot/
+
+Copyright (C) 2010  Jason Wright
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+2. Instructions
+---------------
+
+The core functions are in maze.py. They are:
+
+Maze generation functions -- create perfect (no loops or inaccessible areas) mazes stored in a 2D array. Good explanations of these algorithms are available at: http://www.astrolog.org/labyrnth/algrithm.htm
+mazegen_rb() -- Recursive backtracking algorithm
+mazegen_kruskal() -- Kruskal's algorithm
+mazegen_prim() -- Prim's algorithm
+
+Maze solving function -- uses "wall following" to draw a solution path on the maze array.
+mazesolve_follow()
+
+Maze image generation -- prints a maze array to maze.png
+mazedraw() -- prints arrays stored in the following format: 1:wall, 0 or 0.5:open space, 2:exit cell, 3:entrance cell, -1:solution (first pass), -2:solution(second pass, i.e. if the solution algorithm has been there twice)
+
+Misc operations
+cleanmaze() -- removes solutions and various junk from generation algorithms
+
+3. Other things
+---------------
+
+There are a few functions for robot control: getdata.py, getpoints.py that connect with an Anoto pen running an external socket to receive the location of the pen on dot matrix paper (used for robot navigation).
+
+moveto.py uses the myro library to move a Parallax robot to a location determined by the Anoto pen and dot matrix paper arranged in a maze configuration. makemaze.py generates a maze that would be implemented with dot matrix paper and returns the correct information for use with moveto.py.
+
+spiral.py, demo.py are examples of the system in action.
